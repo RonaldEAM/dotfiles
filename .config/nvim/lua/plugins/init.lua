@@ -41,7 +41,22 @@ return {
   },
 
   -- [[ Directories ]]
-  "nvim-tree/nvim-web-devicons",
+  {
+    "nvim-tree/nvim-web-devicons",
+    config = function()
+      require('nvim-web-devicons').setup({
+        strict = true,
+        override_by_extension = {
+          ["js"] = {
+            icon = "",
+            color = "#F1F134",
+            cterm_color = "227",
+            name = "Js",
+          }
+        }
+      })
+    end
+  },
   "christoomey/vim-tmux-navigator",
 
   -- [[ Editor ]]
@@ -66,5 +81,32 @@ return {
     config = function()
         require('log-highlight').setup {}
     end
+  },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require('oil').setup( {
+        win_options = {
+          signcolumn = "yes:2",
+        },
+      })
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    end
+  },
+  {
+    "refractalize/oil-git-status.nvim",
+    dependencies = {
+      "stevearc/oil.nvim",
+    },
+    config = true,
+  },
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({})
+    end,
   },
 }

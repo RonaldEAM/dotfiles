@@ -41,7 +41,7 @@ return {
         col = 1
       },
       yadm = {
-        enable = false
+        enable = true
       },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
