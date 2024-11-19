@@ -1,33 +1,42 @@
 // set keys for hints using dvorak
-api.Hints.setCharacters('aoeudhtnsypfgcr');
+api.Hints.setCharacters("aoeudhtnsypfgcr");
 settings.hintAlign = "left";
 
 // an example to create a new mapping `ctrl-y`
-api.mapkey('<ctrl-y>', 'Show me the money', function() {
-    Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
+api.mapkey("<ctrl-y>", "Show me the money", function() {
+  Front.showPopup(
+    "a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).",
+  );
 });
 
 // an example to replace `T` with `gt`, click `Default mappings` to see how `T` works.
-api.map('gt', 'T');
-api.map('<Ctrl-o>', 'S');
-api.map('<Ctrl-^>', '<Ctrl-6>');
-api.map('h', 'E');
-api.map('l', 'R');
-api.map('<Ctrl-i>', 'D');
+api.map("gt", "T");
+api.map("<Ctrl-o>", "S");
+api.map("<Ctrl-^>", "<Ctrl-6>");
+api.map("h", "E");
+api.map("l", "R");
+api.map("<Ctrl-i>", "D");
 
 // an example to remove mapkey `Ctrl-i`
-api.unmap('<ctrl-i>');
-api.unmap('S');
-api.unmap('E');
-api.unmap('R');
-api.unmap('<Ctrl-6>');
-api.unmap('D');
+api.unmap("<ctrl-i>");
+api.unmap("S");
+api.unmap("E");
+api.unmap("R");
+api.unmap("<Ctrl-6>");
+api.unmap("D");
 
 // set theme
-api.Hints.style('border: solid 2px #4C566A; color:#A3BE8C; background: initial; background-color: #3B4252;');
-api.Hints.style("border: solid 2px #4C566A !important; padding: 1px !important; color: #E5E9F0 !important; background: #3B4252 !important;", "text");
-api.Visual.style('marks', 'background-color: #A3BE8C99;');
-api.Visual.style('cursor', 'background-color: #88C0D0;');
+api.Hints.style(
+  "border: solid 2px #4C566A; color:#A3BE8C; background: initial; background-color: #3B4252;",
+);
+api.Hints.style(
+  "border: solid 2px #4C566A !important; padding: 1px !important; color: #E5E9F0 !important; background: #3B4252 !important;",
+  "text",
+);
+api.Visual.style("marks", "background-color: #A3BE8C99;");
+api.Visual.style("cursor", "background-color: #88C0D0;");
+
+settings.omnibarMaxResults = 5;
 
 settings.theme = `
 /* Edit these variables for easy theme making */
@@ -112,10 +121,17 @@ input {
 
 /* ---------- Omnibar ---------- */
 /* Uncomment this and use settings.omnibarPosition = 'bottom' for Pentadactyl/Tridactyl style bottom bar */
-/* .sk_theme#sk_omnibar {
-  width: 100%;
-  left: 0;
-} */
+.sk_theme#sk_omnibar {
+  background: #353738;
+  border: 1px solid #040404;
+  outline: 1px solid #696A6A;
+  outline-offset: -2px;
+  border-radius: 15px;
+  box-shadow: 0px 2px 50px rgba(0, 0, 0, 0.5);
+  width: 50%;
+  left: calc(100vw - 75%);
+  top: calc(100vh - 75%);
+}
 
 .sk_theme .title {
   color: var(--accent-fg);
@@ -141,26 +157,71 @@ input {
   color: var(--accent-fg);
 }
 
-.sk_theme #sk_omnibarSearchResult ul li:nth-child(odd) {
-  background: var(--bg-dark);
+.sk_theme #sk_omnibarSearchResult {
+  margin: 0.5rem 0.6rem;
+}
+
+.sk_theme #sk_omnibarSearchResult ul li:nth-child(odd),
+.sk_theme #sk_omnibarSearchResult ul li {
+  border-radius: 5px;
+  padding: 0.75rem;
+  background: transparent;
 }
 
 .sk_theme #sk_omnibarSearchResult ul li.focused {
-  background: var(--border);
+  background: #337185;
+}
+
+#sk_omnibarSearchResult li .icon {
+  margin-right: 1rem;
+}
+
+#sk_omnibarSearchResult li div.title,
+#sk_omnibar span.omnibar_highlight {
+  color: #DBDBDB;
+}
+
+#sk_omnibarSearchResult li div.url {
+  color: #7B7C7C;
+}
+
+#sk_omnibarSearchResult li.focused div.url {
+  white-space: nowrap;
 }
 
 .sk_theme #sk_omnibarSearchArea {
-  border-top-color: var(--border);
-  border-bottom-color: var(--border);
+  padding: 1rem;
+  margin: 0 0.5rem;
+  border: unset;
+  border-bottom: 1px solid #4E4E50;
+  position: relative;
 }
 
-.sk_theme #sk_omnibarSearchArea input,
-.sk_theme #sk_omnibarSearchArea span {
-  font-size: var(--font-size);
+.sk_theme #sk_omnibarSearchArea input {
+  font-size: 18px;
+  padding: 0 0 0 1rem;
+}
+
+.sk_theme #sk_omnibarSearchArea span.prompt {
+  width: 20px;
+}
+
+.sk_theme #sk_omnibarSearchArea span.prompt::after {
+  content: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FFFFFF' d='M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z'/%3E%3C/svg%3E");
+  width: 14px;
+  height: 14px;
+  display: block;
+  position: absolute;
+  top: calc(25% + 4px);
+  left: 1rem;
 }
 
 .sk_theme .separator {
-  color: var(--accent-fg);
+  display: none;
+}
+
+.sk_theme #sk_omnibarSearchArea .resultPage {
+  display: none;
 }
 
 /* ---------- Popup Notification Banner ---------- */

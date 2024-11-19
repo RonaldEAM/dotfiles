@@ -109,4 +109,7 @@ return {
       require("supermaven-nvim").setup({})
     end,
   },
+  {
+    "kirasok/cmp-hledger"
+  },
 }

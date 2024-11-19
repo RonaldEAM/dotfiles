@@ -30,6 +30,7 @@ return {
           { name = 'nvim_lsp' },
           { name = 'vsnip' },
           { name = "supermaven" },
+          { name = "hledger" },
         }, {
           { name = 'buffer' },
         }),
